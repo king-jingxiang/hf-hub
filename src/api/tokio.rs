@@ -1,6 +1,7 @@
 use super::RepoInfo;
 use crate::{Cache, Repo, RepoType};
 use indicatif::{ProgressBar, ProgressStyle};
+use std::env::VarError;
 use rand::Rng;
 use reqwest::{
     header::{
@@ -113,7 +114,7 @@ impl ApiBuilder {
         let progress = true;
 
         Self {
-            endpoint: "https://huggingface.co".to_string(),
+            endpoint: std::env::var("HF_ENDPOINT").unwrap_or_else(|_| "https://huggingface.co".to_string()),
             url_template: "{endpoint}/{repo_id}/resolve/{revision}/{filename}".to_string(),
             cache,
             token,

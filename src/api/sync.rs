@@ -4,6 +4,7 @@ use crate::{Cache, Repo, RepoType};
 use http::{StatusCode, Uri};
 use indicatif::{ProgressBar, ProgressStyle};
 use std::collections::HashMap;
+use std::env::VarError;
 use std::num::ParseIntError;
 use std::path::{Component, Path, PathBuf};
 use std::str::FromStr;
@@ -120,7 +121,7 @@ impl ApiBuilder {
         let progress = true;
 
         Self {
-            endpoint: "https://huggingface.co".to_string(),
+            endpoint: std::env::var("HF_ENDPOINT").unwrap_or_else(|_| "https://huggingface.co".to_string()),
             url_template: "{endpoint}/{repo_id}/resolve/{revision}/{filename}".to_string(),
             cache,
             token,
