@@ -4,7 +4,6 @@ use crate::{Cache, Repo, RepoType};
 use http::{StatusCode, Uri};
 use indicatif::{ProgressBar, ProgressStyle};
 use std::collections::HashMap;
-use std::env::VarError;
 use std::num::ParseIntError;
 use std::path::{Component, Path, PathBuf};
 use std::str::FromStr;

@@ -1,7 +1,6 @@
 use super::RepoInfo;
 use crate::{Cache, Repo, RepoType};
 use indicatif::{ProgressBar, ProgressStyle};
-use std::env::VarError;
 use rand::Rng;
 use reqwest::{
     header::{
